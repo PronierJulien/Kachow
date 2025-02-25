@@ -35,6 +35,27 @@ public class AuthService {
         throw new RuntimeException("Invalid credentials");
     }
 
+    public String register(String username, String password) {
+        if (userRepository.findByUsername(username) != null) {
+            throw new RuntimeException("Username already exists");
+        }
+    
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        userRepository.save(newUser);
+    
+        String token = generateToken(username);
+        Token authToken = new Token();
+        authToken.setToken(token);
+        authToken.setUsername(username);
+        authToken.setExpirationDate(LocalDateTime.now().plusHours(1));
+        tokenRepository.save(authToken);
+    
+        return token;
+    }
+    
+
     public String validateToken(String token) {
         Token authToken = tokenRepository.findByToken(token);
         if (authToken != null && authToken.getExpirationDate().isAfter(LocalDateTime.now())) {

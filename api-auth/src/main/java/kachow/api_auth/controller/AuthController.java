@@ -13,6 +13,16 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    @PostMapping("/signin")
+    public ResponseEntity<String> signin(@RequestParam String username, @RequestParam String password){
+        try {
+            String token = authService.register(username, password);
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body("Registration failed: " + e.getMessage());
+        }
+    }
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         try {
@@ -23,7 +33,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/validate")
+    @PostMapping("/validate")
     public ResponseEntity<String> validateToken(@RequestParam String token) {
         try {
             String username = authService.validateToken(token);
