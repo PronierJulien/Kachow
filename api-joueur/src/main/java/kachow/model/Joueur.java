@@ -18,7 +18,7 @@ public class Joueur {
     private UUID id;
     private int lvl;
     private int xp;
-    private List<UUID> monstres;
+    private List<String> monstres;
     private int max_monstres;
     private int nb_monstres;
     private int xp_for_lvlup;

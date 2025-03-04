@@ -47,7 +47,7 @@ public class JoueurService {
         joueurDao.save(joueur);
     }
 
-    public boolean addMonstre(UUID joueurId, UUID monstreId) {
+    public boolean addMonstre(UUID joueurId, String monstreId) {
         Joueur joueur = getJoueur(joueurId);
         if (joueur.getNb_monstres() >= joueur.getMax_monstres()) {
             return false;
@@ -58,7 +58,7 @@ public class JoueurService {
         return true;
     }
 
-    public void removeMonstre(UUID joueurId, UUID monstreId) {
+    public void removeMonstre(UUID joueurId, String monstreId) {
         Joueur joueur = getJoueur(joueurId);
         joueur.getMonstres().remove(monstreId);
         joueur.setNb_monstres(joueur.getNb_monstres() - 1);

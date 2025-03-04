@@ -21,7 +21,7 @@ public class JoueurController {
         this.joueurService = joueurService;
     }
 
-    @GetMapping("/{joueurId}")
+    @GetMapping("/get/{joueurId}")
     public ResponseEntity<HashMap<String, Object>> getJoueur(@PathVariable UUID joueurId) {
         return ResponseEntity.ok(joueurService.getJoueurInfo(joueurId));
 
@@ -39,7 +39,7 @@ public class JoueurController {
     }
 
     @GetMapping("/addMonstre/{joueurId}/{monstreId}")
-    public ResponseEntity<String> addMonstre(@PathVariable UUID joueurId, @PathVariable UUID monstreId) {
+    public ResponseEntity<String> addMonstre(@PathVariable UUID joueurId, @PathVariable String monstreId) {
         if (joueurService.addMonstre(joueurId, monstreId)) {
             return ResponseEntity.ok("Monstre added");
         }
@@ -47,7 +47,7 @@ public class JoueurController {
     }
 
     @GetMapping("/removeMonstre/{joueurId}/{monstreId}")
-    public ResponseEntity<String> removeMonstre(@PathVariable UUID joueurId, @PathVariable UUID monstreId) {
+    public ResponseEntity<String> removeMonstre(@PathVariable UUID joueurId, @PathVariable String monstreId) {
         joueurService.removeMonstre(joueurId, monstreId);
         return ResponseEntity.ok("Monstre removed");
     }
