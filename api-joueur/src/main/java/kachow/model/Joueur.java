@@ -15,7 +15,7 @@ import java.util.List;
 @Document
 public class Joueur {
     @MongoId
-    private UUID id;
+    private String id;
     private int lvl;
     private int xp;
     private List<String> monstres;
@@ -23,8 +23,8 @@ public class Joueur {
     private int nb_monstres;
     private int xp_for_lvlup;
 
-    public Joueur(){
-        this.id = UUID.randomUUID();
+    public Joueur(String id){
+        this.id = id;
         this.lvl = 1;
         this.xp = 0;
         this.xp_for_lvlup = 50;
