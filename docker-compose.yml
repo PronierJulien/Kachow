@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mongo-demo:
     image: mongo
@@ -27,16 +29,49 @@ services:
       retries: 5
       start_period: 10s
 
-  api-demo:
+  api-auth:
     build: ../
-    container_name:  api-demo
+    container_name: api-auth
     ports:
-      - "8080:8080"
-    links:
-      - mongo-demo
+      - "8081:8080"
     depends_on:
-      mongo-demo:
-        condition: service_healthy
+      - mongo-demo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongoadmin:password@mongo-demo:27017/authdb
+    restart: on-failure
+
+  api-invocations:
+    build: ../
+    container_name: api-invocations
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mongo-demo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongoadmin:password@mongo-demo:27017/invocationsdb
+    restart: on-failure
+
+  api-joueur:
+    build: ../
+    container_name: api-joueur
+    ports:
+      - "8083:8080"
+    depends_on:
+      - mongo-demo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongoadmin:password@mongo-demo:27017/joueurdb
+    restart: on-failure
+
+  api-monstres:
+    build: ../
+    container_name: api-monstres
+    ports:
+      - "8084:8080"
+    depends_on:
+      - mongo-demo
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongoadmin:password@mongo-demo:27017/monstresdb
+    restart: on-failure
 
 volumes:
   mongo-demo:
