@@ -1,9 +1,8 @@
 package kachow.api_invocations.service;
 
-import org.springframework.stereotype.Service;
-
 import kachow.api_invocations.client.InvocationClient;
 import kachow.api_invocations.dto.MonstreDTO;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -19,11 +18,21 @@ public class InvocationService {
         this.invocationClient = invocationClient;
     }
 
-    public Mono<MonstreDTO> invokeMonster() {
-        return null;
+    public Mono<MonstreDTO> invokeMonster(String token) {
+        return invocationClient.validateToken(token)
+                .flatMap(username -> {
+                    MonstreDTO monster = generateRandomMonster().block();
+                    return invocationClient.createMonster(monster)
+                            .doOnNext(createdMonster -> invocationClient.addMonsterToPlayer(username, createdMonster.getId()).subscribe());
+                });
+    }
+    private Mono<MonstreDTO> generateRandomMonster() {
+        List<MonstreDTO> monsterPool = getMonsterPool();
+        int index = random.nextInt(monsterPool.size());
+        return Mono.just(monsterPool.get(index));
     }
 
-    private MonstreDTO randomMonster() {
+    private List<MonstreDTO> getMonsterPool() {
         return null;
     }
 }
