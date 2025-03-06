@@ -1,11 +1,7 @@
 package kachow.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -13,33 +9,36 @@ import java.util.UUID;
 import kachow.service.JoueurService;
 
 @RestController
-@RequestMapping("joueur")
+@RequestMapping("/api/joueur")
 public class JoueurController {
     private final JoueurService joueurService;
+
+    private final String AuthUrl = "localhost:8080/api/auth/validate";
+
 
     public JoueurController(JoueurService joueurService) {
         this.joueurService = joueurService;
     }
 
-    @GetMapping("/{joueurId}")
-    public ResponseEntity<HashMap<String, Object>> getJoueur(@PathVariable UUID joueurId) {
+    @GetMapping("/get/{joueurId}")
+    public ResponseEntity<HashMap<String, Object>> getJoueur(@PathVariable String joueurId) {
         return ResponseEntity.ok(joueurService.getJoueurInfo(joueurId));
-
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UUID> createJoueur() {
-        return ResponseEntity.ok(joueurService.createJoueur());
+    public ResponseEntity<String> createJoueur(@RequestHeader("Authorization") String token) {
+        String joueurId = joueurService.verifyToken(token, AuthUrl);
+        return ResponseEntity.ok(joueurService.createJoueur(joueurId));
     }
 
     @GetMapping("/addXp/{joueurId}/{xp}")
-    public ResponseEntity<String> addXp(@PathVariable UUID joueurId, @PathVariable int xp) {
+    public ResponseEntity<String> addXp(@PathVariable String joueurId, @PathVariable int xp) {
         joueurService.addXp(joueurId, xp);
         return ResponseEntity.ok("XP added");
     }
 
     @GetMapping("/addMonstre/{joueurId}/{monstreId}")
-    public ResponseEntity<String> addMonstre(@PathVariable UUID joueurId, @PathVariable UUID monstreId) {
+    public ResponseEntity<String> addMonstre(@PathVariable String joueurId, @PathVariable String monstreId) {
         if (joueurService.addMonstre(joueurId, monstreId)) {
             return ResponseEntity.ok("Monstre added");
         }
@@ -47,10 +46,11 @@ public class JoueurController {
     }
 
     @GetMapping("/removeMonstre/{joueurId}/{monstreId}")
-    public ResponseEntity<String> removeMonstre(@PathVariable UUID joueurId, @PathVariable UUID monstreId) {
+    public ResponseEntity<String> removeMonstre(@PathVariable String joueurId, @PathVariable String monstreId) {
         joueurService.removeMonstre(joueurId, monstreId);
         return ResponseEntity.ok("Monstre removed");
     }
+
 
 
 }
