@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import kachow.api_invocations.model.Monstre;
+
 public class MonstreInvocDTO {
 
     @MongoId
@@ -20,7 +22,7 @@ public class MonstreInvocDTO {
     private int lvl;
     private int available_lvl;
     private List<Competence> competences = new ArrayList<Competence>(3);
-    private String idJoueur;
+    private double tauxInvocation;
 
     // Getters et Setters
 
@@ -79,4 +81,18 @@ public class MonstreInvocDTO {
     public void setVit(int vit) {
         this.vit = vit;
     }
+
+    public double getTauxInvocation(){
+        return this.tauxInvocation;
+    }
+
+    public void setTauxInvocation(double tauxInvocation){
+        this.tauxInvocation = tauxInvocation;
+    }
+
+    public Monstre toMonstre(String idJoueur) {
+        Monstre monstre = new Monstre(this.competences, this.hp, this.atk, this.def, this.vit, this.type, idJoueur);
+        return monstre;
+    }
+
 }
