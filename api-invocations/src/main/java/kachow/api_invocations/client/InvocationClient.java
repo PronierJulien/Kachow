@@ -1,7 +1,11 @@
 package kachow.api_invocations.client;
 
-import kachow.api_invocations.dto.MonstreDTO;
+import kachow.api_invocations.dto.MonstreInvocDTO;
+
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -18,15 +22,15 @@ public class InvocationClient {
         this.monstreClient = webClientBuilder.baseUrl("http://localhost:8082").build();
     }
 
-    public Mono<MonstreDTO> createMonster(MonstreDTO monstreDTO) {
+    public Mono<MonstreInvocDTO> createMonster(MonstreInvocDTO monstreDTO) {
         return monstreClient.post()
                 .uri("/api/monstre/create")
                 .bodyValue(monstreDTO)
                 .retrieve()
-                .bodyToMono(MonstreDTO.class);
+                .bodyToMono(MonstreInvocDTO.class);
     }
 
-    public Mono<Void> addMonsterToPlayer(String username, String monsterId) {
+    public Mono<Void> addMonsterToPlayer(String username, UUID monsterId) {
         return joueurClient.post()
                 .uri("/api/joueur/ajoutmonstre")
                 .bodyValue(new MonsterAcquisitionRequest(username, monsterId))
@@ -37,7 +41,7 @@ public class InvocationClient {
     public Mono<String> validateToken(String token) {
         return authClient.post()
                 .uri("/api/auth/validate")
-                .bodyValue("token=" + token)
+                .body(BodyInserters.fromFormData("token", token))
                 .retrieve()
                 .bodyToMono(String.class);
     }

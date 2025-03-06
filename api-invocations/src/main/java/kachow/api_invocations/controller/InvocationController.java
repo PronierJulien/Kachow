@@ -1,6 +1,6 @@
 package kachow.api_invocations.controller;
 
-import kachow.api_invocations.dto.MonstreDTO;
+import kachow.api_invocations.dto.MonstreInvocDTO;
 import kachow.api_invocations.service.InvocationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -19,7 +19,7 @@ public class InvocationController {
     }
 
     @GetMapping("/monstre")
-    public Mono<MonstreDTO> invoquerMonstre(@RequestHeader("Authorization") String token) {
+    public Mono<MonstreInvocDTO> invoquerMonstre(@RequestHeader("Authorization") String token) {
         return invocationService.invokeMonster(token);
     }
 }

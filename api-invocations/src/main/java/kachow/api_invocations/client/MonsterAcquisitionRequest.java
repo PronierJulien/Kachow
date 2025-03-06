@@ -1,10 +1,12 @@
 package kachow.api_invocations.client;
 
+import java.util.UUID;
+
 public class MonsterAcquisitionRequest {
     private final String username;
-    private final String monsterId;
+    private final UUID monsterId;
 
-    public MonsterAcquisitionRequest(String username, String monsterId) {
+    public MonsterAcquisitionRequest(String username, UUID monsterId) {
         this.username = username;
         this.monsterId = monsterId;
     }
@@ -13,7 +15,7 @@ public class MonsterAcquisitionRequest {
         return username;
     }
 
-    public String getMonsterId() {
+    public UUID getMonsterId() {
         return monsterId;
     }
 }
