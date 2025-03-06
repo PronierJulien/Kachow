@@ -1,14 +1,11 @@
 package kachow.service;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 import kachow.dao.JoueurDao;
 import kachow.model.Joueur;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.HashMap;
 
@@ -81,15 +78,5 @@ public class JoueurService {
         joueurInfo.put("xp_for_lvlup", joueur.getXp_for_lvlup());
         joueurInfo.put("monstres", joueur.getMonstres());
         return joueurInfo;
-    }
-
-    public String verifyToken(String token, String AuthUrl) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", token);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(AuthUrl, HttpMethod.GET, entity, String.class);
-        return response.getBody();
-    }
-    
+    }    
 }

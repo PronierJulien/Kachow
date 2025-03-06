@@ -1,6 +1,7 @@
 package kachow.controller;
 
-import kachow.dao.MonstreDao;
+import kachow.model.Monstre;
+import kachow.service.Client;
 import kachow.service.MonstreService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,26 @@ import java.util.UUID;
 @RequestMapping("/api/monstre")
 public class MonstreController {
     private final MonstreService monstreService;
-    private final String AuthUrl = "localhost:8080/api/auth/validate";
+    private final Client client;
 
-    public MonstreController(MonstreService monstreService) {
+    public MonstreController(MonstreService monstreService, Client client) {
         this.monstreService = monstreService;
+        this.client = client;
     }
 
     @GetMapping("/get/{monstreId}")
     public ResponseEntity<HashMap<String, Object>> getMonstre(@RequestHeader("Authorization") String token, @PathVariable UUID monstreId) {
-        String idJoueur = monstreService.verifyToken(token, AuthUrl);
-        return ResponseEntity.ok(monstreService.getMonstreInfo(monstreId));
+        String idJoueur = client.verifyToken(token);
+        if(monstreService.isAuthorized(monstreId, idJoueur))
+            return ResponseEntity.ok(monstreService.getMonstreInfo(monstreId));
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<String> createMonstre(@RequestHeader("Authorization") String token, Monstre monstre) {
+        String idJoueur = client.verifyToken(token);
+        monstreService.createMonstre(monstre);
+        return ResponseEntity.ok("Monstre created");
     }
 
     @GetMapping("/addXp/{monstreId}/{xp}")

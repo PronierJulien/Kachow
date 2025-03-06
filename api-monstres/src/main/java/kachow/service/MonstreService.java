@@ -21,6 +21,10 @@ public class MonstreService {
         this.monstreDao = montreDao;
     }
 
+    public void createMonstre(Monstre monstre) {
+        monstreDao.save(monstre);
+    }
+
     public void save(Monstre monstre) {
         Monstre savedMonstre = monstreDao.save(monstre);
     }
@@ -69,15 +73,6 @@ public class MonstreService {
         if(monstre.getAvailable_lvl() >= 0)
             monstre.getCompetences().get(competence).levelUp();
         monstreDao.save(monstre);
-    }
-
-    public String verifyToken(String token, String AuthUrl) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", token);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(AuthUrl, HttpMethod.GET, entity, String.class);
-        return response.getBody();
     }
 
     public boolean isAuthorized(UUID monstreId, String joueurId) {
