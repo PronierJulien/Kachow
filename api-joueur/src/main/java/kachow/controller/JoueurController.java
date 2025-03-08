@@ -50,7 +50,7 @@ public class JoueurController {
         String joueurId;
         try {
             joueurId = client.verifyToken(token);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return ResponseEntity.ok("Invalid token");
         }
         if (joueurService.getJoueur(joueurId) == null) {

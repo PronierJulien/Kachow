@@ -8,9 +8,9 @@ services:
     volumes:
       - mongo-database:/data/db
     expose:
-      - 27018
+      - 27017
     ports:
-      - '27018:27017'
+      - '27017:27017'
     restart: on-failure
 
 
