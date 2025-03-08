@@ -6,48 +6,45 @@ import java.util.UUID;
 
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import kachow.api_invocations.model.Competence;
 import kachow.api_invocations.model.Monstre;
 
 public class MonstreInvocDTO {
 
     @MongoId
-    private UUID id;
-    private Type type;
+    private String _id;
+    private Element element;
     private int hp;
     private int atk;
     private int def;
     private int vit;
-    private int xp;
-    private int xp_for_lvlup;
-    private int lvl;
-    private int available_lvl;
-    private List<Competence> competences = new ArrayList<Competence>(3);
-    private double tauxInvocation;
+    private List<Skill> skills = new ArrayList<Skill>(3);
+    private double lootRate;
 
     // Getters et Setters
 
-    public UUID getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public Type getType() {
-        return type;
+    public Element getElement() {
+        return element;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(Element element) {
+        this.element = element;
     }
 
-    public List<Competence> getCompetences() {
-        return competences;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
-    public void setCompetences(List<Competence> competences) {
-        this.competences = competences;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
     public int getHp() {
@@ -82,16 +79,20 @@ public class MonstreInvocDTO {
         this.vit = vit;
     }
 
-    public double getTauxInvocation(){
-        return this.tauxInvocation;
+    public double getLootRate(){
+        return this.lootRate;
     }
 
-    public void setTauxInvocation(double tauxInvocation){
-        this.tauxInvocation = tauxInvocation;
+    public void setLootRate(double lootRate){
+        this.lootRate = lootRate;
     }
 
     public Monstre toMonstre(String idJoueur) {
-        Monstre monstre = new Monstre(this.competences, this.hp, this.atk, this.def, this.vit, this.type, idJoueur);
+        List<Competence> competences = new ArrayList<Competence>(3);
+        for (Skill skill : this.skills) {
+            competences.add(skill.toCompetence());
+        }
+        Monstre monstre = new Monstre(competences, this.hp, this.atk, this.def, this.vit, Element.toType(this.element), idJoueur);
         return monstre;
     }
 

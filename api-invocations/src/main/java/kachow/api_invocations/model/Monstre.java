@@ -1,10 +1,7 @@
 package kachow.api_invocations.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
-import kachow.api_invocations.dto.Competence;
-import kachow.api_invocations.dto.Type;
+import kachow.api_invocations.model.Competence;
+import kachow.api_invocations.dto.Element;
 
 import java.util.ArrayList;
 import java.util.List;

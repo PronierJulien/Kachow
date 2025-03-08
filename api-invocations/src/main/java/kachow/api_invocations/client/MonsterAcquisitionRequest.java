@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class MonsterAcquisitionRequest {
     private final String username;
-    private final UUID monsterId;
+    private final String monsterId;
 
-    public MonsterAcquisitionRequest(String username, UUID monsterId) {
+    public MonsterAcquisitionRequest(String username, String monsterId) {
         this.username = username;
         this.monsterId = monsterId;
     }
@@ -15,7 +15,7 @@ public class MonsterAcquisitionRequest {
         return username;
     }
 
-    public UUID getMonsterId() {
+    public String getMonsterId() {
         return monsterId;
     }
 }

@@ -29,17 +29,17 @@ public class InvocationService {
                     MonstreInvocDTO monster = generateRandomMonster().block();
                     Monstre finalMonster = monster.toMonstre(username);
                     return invocationClient.createMonster(monster)
-                            .doOnNext(createdMonster -> invocationClient.addMonsterToPlayer(username, createdMonster.getId()).subscribe());
+                            .doOnNext(createdMonster -> invocationClient.addMonsterToPlayer(username, createdMonster.get_id()).subscribe());
                 });
     }
     private Mono<MonstreInvocDTO> generateRandomMonster() {
         return getMonsterPool().flatMap(monsterPool -> {
-            double totalTaux = monsterPool.stream().mapToDouble(MonstreInvocDTO::getTauxInvocation).sum();
+            double totalTaux = monsterPool.stream().mapToDouble(MonstreInvocDTO::getLootRate).sum();
             double randomValue = random.nextDouble() * totalTaux;
 
             double cumulativeProbability = 0.0;
             for (MonstreInvocDTO monstreInvocDTO : monsterPool) {
-                cumulativeProbability += monstreInvocDTO.getTauxInvocation();
+                cumulativeProbability += monstreInvocDTO.getLootRate();
                 if (randomValue <= cumulativeProbability) {
                     return Mono.just(monstreInvocDTO);
                 }

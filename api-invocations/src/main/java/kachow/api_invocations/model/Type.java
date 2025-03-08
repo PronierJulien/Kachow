@@ -1,4 +1,4 @@
-package kachow.api_invocations.dto;
+package kachow.api_invocations.model;
 
 public enum Type {
     FEU,
