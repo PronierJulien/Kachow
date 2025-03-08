@@ -12,7 +12,7 @@ public class Client {
 
 
     public Client(WebClient.Builder webClientBuilder) {
-        this.authClient = webClientBuilder.baseUrl("http://localhost:8080").build();
+        this.authClient = webClientBuilder.baseUrl("http://api-auth:8080").build();
     }
 
     public String verifyToken(String token) {
