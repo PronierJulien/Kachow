@@ -1,5 +1,6 @@
 package kachow.dao;
 
+import kachow.model.Monstre;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,11 +8,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import kachow.model.Joueur;
-
 @Repository
-public interface JoueurDao extends MongoRepository<Joueur, String> {
-    List<Joueur> findAll();
-    Optional<Joueur> findById(String id);
+public interface MonstreDao extends MongoRepository<Monstre, UUID> {
+    List<Monstre> findAll();
+    Optional<Monstre> findById(UUID id);
     void deleteById(UUID id);
 }

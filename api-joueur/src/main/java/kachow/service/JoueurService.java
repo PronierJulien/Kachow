@@ -1,16 +1,18 @@
 package kachow.service;
 
+
 import org.springframework.stereotype.Service;
 
 import kachow.dao.JoueurDao;
 import kachow.model.Joueur;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 @Service
 public class JoueurService {
     private final JoueurDao joueurDao;
+
 
     public JoueurService(JoueurDao joueurDao) {
         this.joueurDao = joueurDao;
@@ -20,12 +22,12 @@ public class JoueurService {
         joueurDao.save(joueur);
     }
 
-    public Joueur getJoueur(UUID joueurId) {
+    public Joueur getJoueur(String joueurId) {
         return joueurDao.findById(joueurId).orElse(null);
     }
 
-    public UUID createJoueur() {
-        Joueur joueur = new Joueur();
+    public String createJoueur(String joueurId) {
+        Joueur joueur = new Joueur(joueurId);
         joueurDao.save(joueur);
         return joueur.getId();
     }
@@ -38,7 +40,7 @@ public class JoueurService {
         joueurDao.save(joueur);
     }
 
-    public void addXp(UUID joueurId, int xp) {
+    public void addXp(String joueurId, int xp) {
         Joueur joueur = getJoueur(joueurId);
         joueur.setXp(joueur.getXp() + xp);
         if (joueur.getXp() >= joueur.getXp_for_lvlup()) {
@@ -47,7 +49,7 @@ public class JoueurService {
         joueurDao.save(joueur);
     }
 
-    public boolean addMonstre(UUID joueurId, UUID monstreId) {
+    public boolean addMonstre(String joueurId, String monstreId) {
         Joueur joueur = getJoueur(joueurId);
         if (joueur.getNb_monstres() >= joueur.getMax_monstres()) {
             return false;
@@ -58,14 +60,14 @@ public class JoueurService {
         return true;
     }
 
-    public void removeMonstre(UUID joueurId, UUID monstreId) {
+    public void removeMonstre(String joueurId, String monstreId) {
         Joueur joueur = getJoueur(joueurId);
         joueur.getMonstres().remove(monstreId);
         joueur.setNb_monstres(joueur.getNb_monstres() - 1);
         joueurDao.save(joueur);
     }
 
-    public HashMap<String, Object> getJoueurInfo(UUID joueurId) {
+    public HashMap<String, Object> getJoueurInfo(String joueurId) {
         Joueur joueur = getJoueur(joueurId);
         HashMap<String, Object> joueurInfo = new HashMap<>();
         joueurInfo.put("id", joueur.getId());
@@ -76,6 +78,5 @@ public class JoueurService {
         joueurInfo.put("xp_for_lvlup", joueur.getXp_for_lvlup());
         joueurInfo.put("monstres", joueur.getMonstres());
         return joueurInfo;
-    }
-    
+    }    
 }
