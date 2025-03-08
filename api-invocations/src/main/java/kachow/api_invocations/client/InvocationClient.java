@@ -1,6 +1,7 @@
 package kachow.api_invocations.client;
 
 import kachow.api_invocations.dto.MonstreInvocDTO;
+import kachow.api_invocations.model.Monstre;
 
 import java.util.UUID;
 
@@ -17,17 +18,26 @@ public class InvocationClient {
     private final WebClient monstreClient;
 
     public InvocationClient(WebClient.Builder webClientBuilder) {
-        this.authClient = webClientBuilder.baseUrl("http://localhost:8080").build();
-        this.joueurClient = webClientBuilder.baseUrl("http://localhost:8081").build();
-        this.monstreClient = webClientBuilder.baseUrl("http://localhost:8082").build();
+        this.authClient = webClientBuilder.baseUrl("http://api-auth:8080").build();
+        this.joueurClient = webClientBuilder.baseUrl("http://api-joueur:8080").build();
+        this.monstreClient = webClientBuilder.baseUrl("http://api-monstres:8080").build();
     }
 
-    public Mono<MonstreInvocDTO> createMonster(MonstreInvocDTO monstreDTO) {
-        return monstreClient.post()
-                .uri("/api/monstre/create")
-                .bodyValue(monstreDTO)
-                .retrieve()
-                .bodyToMono(MonstreInvocDTO.class);
+    public Mono<Monstre> createMonster(Monstre monstreDTO, String token) {
+        System.out.println("Creating monster: " + monstreDTO);
+        System.out.println(monstreClient.post()
+        .uri("/api/monstre/")
+        .header("Authorization", token)
+        .bodyValue(monstreDTO)
+        .retrieve()
+        .bodyToMono(Monstre.class));
+        return null;
+        // return monstreClient.post()
+        //         .uri("/api/monstre/create")
+        //         .header("Authorization", token)
+        //         .bodyValue(monstreDTO)
+        //         .retrieve()
+        //         .bodyToMono(Monstre.class);
     }
 
     public Mono<Void> addMonsterToPlayer(String username, String monsterId) {
@@ -38,12 +48,12 @@ public class InvocationClient {
                 .bodyToMono(Void.class);
     }
 
-    public Mono<String> validateToken(String token) {
+    public String validateToken(String token) {
         return authClient.post()
                 .uri("/api/auth/validate")
                 .body(BodyInserters.fromFormData("token", token))
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(String.class).block();
     }
 
 }

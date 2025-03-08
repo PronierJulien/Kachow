@@ -35,4 +35,8 @@ public class Monstre {
         this.idJoueur = idJoueur;
     }
 
+    public String getId() {
+        return id.toString();
+    }
+
 }
