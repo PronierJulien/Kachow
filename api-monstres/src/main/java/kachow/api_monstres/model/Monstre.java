@@ -1,4 +1,4 @@
-package kachow.model;
+package kachow.api_monstres.model;
 
 
 import lombok.Getter;

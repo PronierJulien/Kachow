@@ -27,7 +27,7 @@ public class InvocationService {
         System.out.println("Invoking monster for " + username);
         MonstreInvocDTO monster = generateRandomMonster().block();
         Monstre createdMonster = invocationClient.createMonster(monster.toMonstre(username), token).block();
-        invocationClient.addMonsterToPlayer(username, createdMonster.getId()).subscribe();
+        invocationClient.addMonsterToPlayer(username, createdMonster.getId(), token).subscribe();
         return Mono.just(createdMonster);
     }
     private Mono<MonstreInvocDTO> generateRandomMonster() {

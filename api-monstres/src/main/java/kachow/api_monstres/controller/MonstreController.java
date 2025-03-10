@@ -1,8 +1,9 @@
-package kachow.controller;
+package kachow.api_monstres.controller;
 
-import kachow.model.Monstre;
-import kachow.service.Client;
-import kachow.service.MonstreService;
+import kachow.api_monstres.model.Monstre;
+import kachow.api_monstres.service.Client;
+import kachow.api_monstres.service.MonstreService;
+
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,5 +44,10 @@ public class MonstreController {
     public ResponseEntity<String> addXp(@PathVariable UUID monstreId, @PathVariable int xp) {
         monstreService.addXp(monstreId, xp);
         return ResponseEntity.ok("XP added");
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("test ok");
     }
 }

@@ -1,4 +1,4 @@
-package kachow.service;
+package kachow.api_monstres.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;

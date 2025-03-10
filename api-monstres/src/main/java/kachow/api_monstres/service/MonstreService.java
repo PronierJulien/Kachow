@@ -1,7 +1,8 @@
-package kachow.service;
+package kachow.api_monstres.service;
 
-import kachow.dao.MonstreDao;
-import kachow.model.Monstre;
+import kachow.api_monstres.dao.MonstreDao;
+import kachow.api_monstres.model.Monstre;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;

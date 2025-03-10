@@ -30,9 +30,10 @@ public class InvocationClient {
         .bodyToMono(Monstre.class);
     }
 
-    public Mono<Void> addMonsterToPlayer(String username, String monsterId) {
+    public Mono<Void> addMonsterToPlayer(String username, String monsterId, String token) {
         return joueurClient.post()
-                .uri("/api/joueur/ajoutmonstre")
+                .uri("/api/joueur/addMonster")
+                .header("Authorization", token)
                 .bodyValue(new MonsterAcquisitionRequest(username, monsterId))
                 .retrieve()
                 .bodyToMono(Void.class);
