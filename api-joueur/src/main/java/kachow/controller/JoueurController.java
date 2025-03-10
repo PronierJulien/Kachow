@@ -60,9 +60,14 @@ public class JoueurController {
         return ResponseEntity.ok("XP added");
     }
 
-    @GetMapping("/addMonstre/{joueurId}/{monstreId}")
-    public ResponseEntity<String> addMonstre(@PathVariable String joueurId, @PathVariable String monstreId) {
-
+    @PostMapping("/addMonstre")
+    public ResponseEntity<String> addMonstre(@RequestHeader("Authorization") String token, @RequestBody String monstreId) {
+        String joueurId;
+        try {
+            joueurId = client.verifyToken(token);
+        } catch (Exception e) {
+            return ResponseEntity.ok("Invalid token");
+        }
         if (joueurService.addMonstre(joueurId, monstreId)) {
             return ResponseEntity.ok("Monstre added");
         }

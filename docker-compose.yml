@@ -25,7 +25,7 @@ services:
       build: ./api-invocations
       container_name: api-invocations
       ports: [ '8030:8080' ]
-      depends_on: [ 'mongo-database', 'api-auth' ]
+      depends_on: [ 'mongo-database', 'api-auth', 'api-monstres' ]
 
   api-joueur:
       build: ./api-joueur

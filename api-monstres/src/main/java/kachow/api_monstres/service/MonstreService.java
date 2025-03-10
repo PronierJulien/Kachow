@@ -1,7 +1,8 @@
-package kachow.service;
+package kachow.api_monstres.service;
 
-import kachow.dao.MonstreDao;
-import kachow.model.Monstre;
+import kachow.api_monstres.dao.MonstreDao;
+import kachow.api_monstres.model.Monstre;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,8 +22,9 @@ public class MonstreService {
         this.monstreDao = montreDao;
     }
 
-    public void createMonstre(Monstre monstre) {
+    public Monstre createMonstre(Monstre monstre) {
         monstreDao.save(monstre);
+        return monstre;
     }
 
     public void save(Monstre monstre) {

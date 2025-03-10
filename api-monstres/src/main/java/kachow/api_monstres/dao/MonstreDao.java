@@ -1,8 +1,9 @@
-package kachow.dao;
+package kachow.api_monstres.dao;
 
-import kachow.model.Monstre;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+
+import kachow.api_monstres.model.Monstre;
 
 import java.util.List;
 import java.util.Optional;

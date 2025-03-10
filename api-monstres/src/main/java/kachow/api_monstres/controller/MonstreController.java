@@ -1,8 +1,9 @@
-package kachow.controller;
+package kachow.api_monstres.controller;
 
-import kachow.model.Monstre;
-import kachow.service.Client;
-import kachow.service.MonstreService;
+import kachow.api_monstres.model.Monstre;
+import kachow.api_monstres.service.Client;
+import kachow.api_monstres.service.MonstreService;
+
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,14 +30,24 @@ public class MonstreController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createMonstre(Monstre monstre) {
+    public ResponseEntity<Monstre> createMonstre(@RequestHeader("Authorization") String token, @RequestBody Monstre monstre) {
+        try {
+            client.verifyToken(token);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.ok(null);
+        }
         monstreService.createMonstre(monstre);
-        return ResponseEntity.ok("Monstre created");
+        return ResponseEntity.ok(monstre);
     }
 
     @GetMapping("/addXp/{monstreId}/{xp}")
     public ResponseEntity<String> addXp(@PathVariable UUID monstreId, @PathVariable int xp) {
         monstreService.addXp(monstreId, xp);
         return ResponseEntity.ok("XP added");
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("test ok");
     }
 }

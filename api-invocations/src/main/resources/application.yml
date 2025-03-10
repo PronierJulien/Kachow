@@ -6,5 +6,5 @@ spring:
       authentication-database: admin
       username: mongoadmin
       password: password
-      database: IMT_Auth
+      database: IMT_Invocations
       mechanism: SCRAM-SHA-256
