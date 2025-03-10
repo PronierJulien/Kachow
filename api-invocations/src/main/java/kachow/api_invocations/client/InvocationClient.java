@@ -1,9 +1,6 @@
 package kachow.api_invocations.client;
 
-import kachow.api_invocations.dto.MonstreInvocDTO;
 import kachow.api_invocations.model.Monstre;
-
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -25,19 +22,12 @@ public class InvocationClient {
 
     public Mono<Monstre> createMonster(Monstre monstreDTO, String token) {
         System.out.println("Creating monster: " + monstreDTO);
-        System.out.println(monstreClient.post()
-        .uri("/api/monstre/")
+        return monstreClient.post()
+        .uri("/api/monstre/create")
         .header("Authorization", token)
         .bodyValue(monstreDTO)
         .retrieve()
-        .bodyToMono(Monstre.class));
-        return null;
-        // return monstreClient.post()
-        //         .uri("/api/monstre/create")
-        //         .header("Authorization", token)
-        //         .bodyValue(monstreDTO)
-        //         .retrieve()
-        //         .bodyToMono(Monstre.class);
+        .bodyToMono(Monstre.class);
     }
 
     public Mono<Void> addMonsterToPlayer(String username, String monsterId) {

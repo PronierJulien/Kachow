@@ -29,13 +29,14 @@ public class MonstreController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createMonstre(@RequestHeader("Authorization") String token, @RequestBody Monstre monstre) {
+    public ResponseEntity<Monstre> createMonstre(@RequestHeader("Authorization") String token, @RequestBody Monstre monstre) {
         try {
             client.verifyToken(token);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.ok("Invalid token");
+            return ResponseEntity.ok(null);
         }
-        return ResponseEntity.ok("Monstre created");
+        monstreService.createMonstre(monstre);
+        return ResponseEntity.ok(monstre);
     }
 
     @GetMapping("/addXp/{monstreId}/{xp}")

@@ -21,8 +21,9 @@ public class MonstreService {
         this.monstreDao = montreDao;
     }
 
-    public void createMonstre(Monstre monstre) {
+    public Monstre createMonstre(Monstre monstre) {
         monstreDao.save(monstre);
+        return monstre;
     }
 
     public void save(Monstre monstre) {
