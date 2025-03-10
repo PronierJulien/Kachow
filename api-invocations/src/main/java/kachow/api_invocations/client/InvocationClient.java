@@ -32,7 +32,7 @@ public class InvocationClient {
 
     public Mono<Void> addMonsterToPlayer(String username, String monsterId, String token) {
         return joueurClient.post()
-                .uri("/api/joueur/addMonster")
+                .uri("/api/joueur/addMonstre")
                 .header("Authorization", token)
                 .bodyValue(new MonsterAcquisitionRequest(username, monsterId))
                 .retrieve()
