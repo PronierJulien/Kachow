@@ -39,5 +39,11 @@ services:
       ports: [ '8020:8080' ]
       depends_on: [ 'mongo-database', 'api-auth' ]
 
+  api-front:
+      build: ./api-front
+      container_name: api-front
+      ports: [ '80:80' ]
+      depends_on: [ 'api-joueur', 'api-monstres', 'api-invocations' ]
+
 volumes:
   mongo-database:

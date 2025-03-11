@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$binary": {
+      "base64": "gU0qKdlyWem2aL3Xi5afuQ==",
+      "subType": "03"
+    }
+  },
+  "username": "jean",
+  "password": "lassalle",
+  "_class": "kachow.api_auth.dto.User"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "EU9gBsHqZrP0bfLABCu6tA==",
+      "subType": "03"
+    }
+  },
+  "username": "Patrick",
+  "password": "Burelle",
+  "_class": "kachow.api_auth.dto.User"
+}]

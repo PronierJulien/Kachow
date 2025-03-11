@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$binary": {
+      "base64": "G0bqhn6o4FaaLmjkMp2Flg==",
+      "subType": "03"
+    }
+  },
+  "token": "jean-2025/03/10-15:34:37-b692e993-c442-460a-87c6-00b73236bcb1",
+  "username": "jean",
+  "expirationDate": {
+    "$date": "2025-03-10T18:03:29.014Z"
+  },
+  "_class": "kachow.api_auth.dto.Token"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "jkAedq9HziG15VruR87uiw==",
+      "subType": "03"
+    }
+  },
+  "token": "jean-2025/03/10-15:34:45-556a3835-354d-49a8-9918-bb39acf0b627",
+  "username": "jean",
+  "expirationDate": {
+    "$date": "2025-03-10T16:34:45.813Z"
+  },
+  "_class": "kachow.api_auth.dto.Token"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "wUX8tFmd2ZHQov1hFPzilw==",
+      "subType": "03"
+    }
+  },
+  "token": "Patrick-2025/03/10-17:03:43-26b6892f-f45c-4c3c-8833-5bb90cbdf409",
+  "username": "Patrick",
+  "expirationDate": {
+    "$date": "2025-03-10T18:04:17.043Z"
+  },
+  "_class": "kachow.api_auth.dto.Token"
+}]

@@ -1,0 +1,27 @@
+[{
+  "_id": "jean",
+  "lvl": 7,
+  "xp": 18,
+  "monstres": [
+    "{\"username\":\"jean\",\"monsterId\":\"ca0f8a9d-85a4-4168-9687-24216f997005\"}",
+    "{\"username\":\"jean\",\"monsterId\":\"9156d4b1-02b6-4a54-9853-29809c0196a2\"}"
+  ],
+  "max_monstres": 16,
+  "nb_monstres": 2,
+  "xp_for_lvlup": 86,
+  "_class": "kachow.model.Joueur"
+},
+{
+  "_id": "Patrick",
+  "lvl": 1,
+  "xp": 0,
+  "monstres": [
+    "{\"username\":\"Patrick\",\"monsterId\":\"a258f383-49cf-40fb-9797-39ed9f8909e1\"}",
+    "{\"username\":\"Patrick\",\"monsterId\":\"ff00bc01-31e1-4ad5-934d-fb297fa91bc7\"}",
+    "{\"username\":\"Patrick\",\"monsterId\":\"e06400c2-f35f-40c7-b43e-256cd1e2c7ed\"}"
+  ],
+  "max_monstres": 10,
+  "nb_monstres": 3,
+  "xp_for_lvlup": 50,
+  "_class": "kachow.model.Joueur"
+}]

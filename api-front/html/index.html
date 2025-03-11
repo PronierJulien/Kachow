@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invocation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="choix-container">
+        <h1>Authentification</h1>
+        <button onclick="afficherFormulaire('login')">Se Connecter</button>
+        <button onclick="afficherFormulaire('signin')">Créer un Compte</button>
+    </div>
+
+    <div id="form-login" class="formulaire-cache">
+        <h2>Connexion</h2>
+        <form id="loginForm">
+            <label>Nom d'utilisateur :</label>
+            <input type="text" id="login-username" required>
+            <label>Mot de passe :</label>
+            <input type="password" id="login-password" required>
+            <button type="submit">Se Connecter</button>
+        </form>
+    </div>
+
+    <div id="form-signin" class="formulaire-cache">
+        <h2>Créer un Compte</h2>
+        <form id="signinForm">
+            <label>Nom d'utilisateur :</label>
+            <input type="text" id="signin-username" required>
+            <label>Mot de passe :</label>
+            <input type="password" id="signin-password" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
