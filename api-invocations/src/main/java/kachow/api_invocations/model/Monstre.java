@@ -21,7 +21,7 @@ public class Monstre {
     private List<Competence> competences = new ArrayList<Competence>(3);
     private String idJoueur;
 
-    public Monstre(List<Competence> competences2, int hp, int atk, int def, int vit, Type type2, String idJoueur) {
+    public Monstre(List<Competence> competences, int hp, int atk, int def, int vit, Type type2, String idJoueur) {
         this.id = UUID.randomUUID();
         this.lvl = 0;
         this.available_lvl = 0;
@@ -33,10 +33,55 @@ public class Monstre {
         this.vit = vit;
         this.type = type2;
         this.idJoueur = idJoueur;
+        this.competences = competences;
     }
 
     public String getId() {
         return id.toString();
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getDef() {
+        return def;
+    }
+
+    public int getVit() {
+        return vit;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getXpForLvlup() {
+        return xp_for_lvlup;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public int getAvailableLvl() {
+        return available_lvl;
+    }
+
+    public List<Competence> getCompetences() {
+        return competences;
+    }
+
+    public String getIdJoueur() {
+        return idJoueur;
+    }
+
+    public Type getType() {
+        return type;
     }
 
 }

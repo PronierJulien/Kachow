@@ -33,9 +33,17 @@ public class JoueurService {
     }
 
     public void lvlUp(Joueur joueur) {
+        int new_xp = joueur.getXp() - joueur.getXp_for_lvlup();
         joueur.setLvl(joueur.getLvl() + 1);
         joueur.setXp_for_lvlup((int) (joueur.getXp_for_lvlup() * 1.1));
-        joueur.setXp(0);
+        if (new_xp > 0) {
+            joueur.setXp(new_xp);
+        } else {
+            joueur.setXp(0);
+        }
+        if (joueur.getXp() >= joueur.getXp_for_lvlup()) {
+            lvlUp(joueur);
+        }
         joueur.setMax_monstres(joueur.getMax_monstres() + 1);
         joueurDao.save(joueur);
     }

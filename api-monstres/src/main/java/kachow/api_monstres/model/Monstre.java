@@ -28,18 +28,8 @@ public class Monstre {
     private List<Competence> competences = new ArrayList<Competence>(3);
     private String idJoueur;
 
-    public Monstre(List<Competence> competence, int hp, int atk, int def, int vit, Type type, String idJoueur) {
-        this.id = UUID.randomUUID();
-        this.lvl = 0;
-        this.available_lvl = 0;
-        this.xp = 0;
+    public Monstre(){
         this.xp_for_lvlup = 50;
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
-        this.vit = vit;
-        this.type = type;
-        this.idJoueur = idJoueur;
     }
 
 }

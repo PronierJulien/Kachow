@@ -90,6 +90,7 @@ public class MonstreInvocDTO {
     public Monstre toMonstre(String idJoueur) {
         List<Competence> competences = new ArrayList<Competence>(3);
         for (Skill skill : this.skills) {
+            System.out.println("BOOOO");
             competences.add(skill.toCompetence());
         }
         Monstre monstre = new Monstre(competences, this.hp, this.atk, this.def, this.vit, Element.toType(this.element), idJoueur);

@@ -21,4 +21,24 @@ public class Competence {
         cooldown *= 0.9;
         lvl = 1;
     }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getRatio() {
+        return ratio;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }
 }

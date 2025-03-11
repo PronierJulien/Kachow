@@ -1,5 +1,8 @@
 package kachow.api_monstres.model;
-
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class Competence {
     private int damage;
     private int ratio;

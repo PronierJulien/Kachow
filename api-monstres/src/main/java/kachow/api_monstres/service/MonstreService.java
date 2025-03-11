@@ -36,14 +36,17 @@ public class MonstreService {
     }
 
     public void lvlUp(Monstre monstre) {
+        int new_xp = monstre.getXp() - monstre.getXp_for_lvlup();
         monstre.setLvl(monstre.getLvl() + 1);
         monstre.setXp_for_lvlup((int) (monstre.getXp_for_lvlup() * 1.1));
-        monstre.setHp((int) (monstre.getHp() * 1.1));
-        monstre.setDef((int) (monstre.getDef() * 1.1));
-        monstre.setAtk((int) (monstre.getAtk() * 1.1));
-        monstre.setVit((int) (monstre.getVit() * 1.1));
-        monstre.setAvailable_lvl(monstre.getAvailable_lvl() + 1);
-        monstre.setXp(0);
+        if (new_xp > 0) {
+            monstre.setXp(new_xp);
+        } else {
+            monstre.setXp(0);
+        }
+        if (monstre.getXp() >= monstre.getXp_for_lvlup()) {
+            lvlUp(monstre);
+        }
         monstreDao.save(monstre);
     }
 

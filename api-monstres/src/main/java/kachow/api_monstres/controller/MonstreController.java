@@ -41,13 +41,13 @@ public class MonstreController {
     }
 
     @GetMapping("/addXp/{monstreId}/{xp}")
-    public ResponseEntity<String> addXp(@PathVariable UUID monstreId, @PathVariable int xp) {
-        monstreService.addXp(monstreId, xp);
-        return ResponseEntity.ok("XP added");
+    public ResponseEntity<String> addXp(@RequestHeader("Authorization") String token, @PathVariable UUID monstreId, @PathVariable int xp) {
+        String idJoueur = client.verifyToken(token);
+        if(monstreService.isAuthorized(monstreId, idJoueur)){
+            monstreService.addXp(monstreId, xp);
+            return ResponseEntity.ok("XP added");
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("test ok");
-    }
 }
