@@ -23,7 +23,7 @@ public class InvocationService {
         this.monstreInvocRepository = monstreInvocRepository;
     }
 
-    public Mono<Monstre> invokeMonster(String username, String token) {
+    public Monstre invokeMonster(String username, String token) {
         System.out.println("Invoking monster for " + username);
         MonstreInvocDTO monster = generateRandomMonster().block();
         Monstre test = monster.toMonstre(username);
@@ -31,7 +31,7 @@ public class InvocationService {
         System.out.println("MonsterDTO: " + monster.getSkills());
         Monstre createdMonster = invocationClient.createMonster(monster.toMonstre(username), token).block();
         invocationClient.addMonsterToPlayer(username, createdMonster.getId(), token).subscribe();
-        return Mono.just(createdMonster);
+        return createdMonster;
     }
     private Mono<MonstreInvocDTO> generateRandomMonster() {
         return getMonsterPool().flatMap(monsterPool -> {
