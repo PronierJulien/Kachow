@@ -37,7 +37,7 @@
         let token = localStorage.getItem('token');
 
         async function getPlayerInfo() {
-            const response = await fetch('http://api-joueur:8010/api/joueur/get', {
+            const response = await fetch('http://localhost:8010/api/joueur/get', {
                 method: 'GET',
                 headers: { 'Authorization': `${token}` }
             });
@@ -50,9 +50,10 @@
         }
 
         async function invokeMonster() {
-            const response = await fetch('http://api-invocations:8020/invocation/monstre', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` }
+            console.log(token.data);
+            const response = await fetch('http://localhost:8030/invocation/monstre', {
+                method: 'GET',
+                headers: { 'Authorization': `${token}` }
             });
             if (response.ok) {
                 const monster = await response.json();

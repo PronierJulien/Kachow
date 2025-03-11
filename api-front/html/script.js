@@ -22,9 +22,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
         });
-        const data = await response;
 
-        localStorage.setItem('token', data.token);
+        const data = await response.text();
+
+        localStorage.setItem('token', data);
         window.location.href = 'dashboard.html';
     } catch (error) {
         alert('Erreur : ' + error.message);
@@ -45,9 +46,9 @@ document.getElementById('signinForm').addEventListener('submit', async (e) => {
         });
 
         if (!response.ok) throw new Error('Erreur lors de l\'inscription');
-        const data = await response;
+        const data = await response.text()
 
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data);
         window.location.href = 'dashboard.html';
     } catch (error) {
         alert('Erreur : ' + error.message);
