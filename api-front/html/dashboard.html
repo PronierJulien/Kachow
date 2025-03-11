@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Monstre Invocation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .hidden { display: none; }
+        #dashboard { margin-top: 20px; }
+        button { margin: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <h2>Bienvenue sur ton Dashboard</h2>
+        <button onclick="showPage('playerInfo')">Voir mon profil</button>
+        <button onclick="showPage('invocationPage')">Invoquer un Monstre</button>
+
+        <!-- Page d'Info Joueur -->
+        <div id="playerInfo" class="hidden">
+            <h3>Infos du Joueur</h3>
+            <pre id="playerData"></pre>
+        </div>
+
+        <!-- Page d'Invocation -->
+        <div id="invocationPage" class="hidden">
+            <h3>Invoquer un Monstre</h3>
+            <button onclick="invokeMonster()">Invoquer</button>
+            <div id="invocationResult"></div>
+        </div>
+    </div>
+
+    <script>
+
+        let token = localStorage.getItem('token');
+
+        async function getPlayerInfo() {
+            const response = await fetch('http://api-joueur:8010/api/joueur/get', {
+                method: 'GET',
+                headers: { 'Authorization': `${token}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('playerData').textContent = JSON.stringify(data, null, 2);
+            } else {
+                alert("Erreur lors de la récupération des informations joueur");
+            }
+        }
+
+        async function invokeMonster() {
+            const response = await fetch('http://api-invocations:8020/invocation/monstre', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.ok) {
+                const monster = await response.json();
+                document.getElementById('invocationResult').textContent = `Monstre invoqué : ${JSON.stringify(monster)}`;
+            } else {
+                alert("Erreur lors de l'invocation du monstre");
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('#dashboard > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

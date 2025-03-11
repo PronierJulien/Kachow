@@ -22,14 +22,18 @@ public class DataLoader {
     CommandLineRunner loadDataToken(TokenRepository repository) {
         return args -> {
             if (repository.count() == 0) {
-                ObjectMapper mapper = new ObjectMapper();
-                InputStream inputStream = getClass().getResourceAsStream("/IMT_Auth.tokens.json");
-                System.out.println(inputStream.toString());
-
-                List<Token> tokens = mapper.readValue(inputStream, new TypeReference<List<Token>>() {});
-                repository.saveAll(tokens);
-
-                System.out.println("Données insérées : " + tokens.size() + " tokens");
+                try{
+                    ObjectMapper mapper = new ObjectMapper();
+                    InputStream inputStream = getClass().getResourceAsStream("/IMT_Auth.tokens.json");
+                    System.out.println(inputStream.toString());
+    
+                    List<Token> tokens = mapper.readValue(inputStream, new TypeReference<List<Token>>() {});
+                    repository.saveAll(tokens);
+    
+                    System.out.println("Données insérées : " + tokens.size() + " tokens");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             } else {
                 System.out.println("Les données existent déjà");
             }
@@ -40,14 +44,18 @@ public class DataLoader {
     CommandLineRunner loadDataUser(UserRepository repository) {
         return args -> {
             if (repository.count() == 0) {
-                ObjectMapper mapper = new ObjectMapper();
-                InputStream inputStream = getClass().getResourceAsStream("/IMT_Auth.users.json");
-                System.out.println(inputStream.toString());
-
-                List<User> users = mapper.readValue(inputStream, new TypeReference<List<User>>() {});
-                repository.saveAll(users);
-
-                System.out.println("Données insérées : " + users.size() + " monstres");
+                try{
+                    ObjectMapper mapper = new ObjectMapper();
+                    InputStream inputStream = getClass().getResourceAsStream("/IMT_Auth.users.json");
+                    System.out.println(inputStream.toString());
+    
+                    List<User> users = mapper.readValue(inputStream, new TypeReference<List<User>>() {});
+                    repository.saveAll(users);
+    
+                    System.out.println("Données insérées : " + users.size() + " monstres");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             } else {
                 System.out.println("Les données existent déjà");
             }
