@@ -13,6 +13,19 @@ services:
       - '27017:27017'
     restart: on-failure
 
+  mongo_import:
+    image: mongo
+    container_name: mongo_import
+    depends_on: ['mongo-database']
+    volumes:
+      - ./mongo_import:/mongo_import
+    command: >
+      /bin/sh -c "
+      mongoimport --host mongo-database -u mongoadmin --password password --authenticationDatabase admin --db IMT_Monstres --collection monstres --type json --file /mongo_import/IMT_Monstres.monstre.json --jsonArray &&
+      mongoimport --host mongo-database -u mongoadmin --password password --authenticationDatabase admin --db IMT_Joueur --collection joueurs --type json --file /mongo_import/IMT_Joueur.joueur.json --jsonArray &&
+      mongoimport --host mongo-database -u mongoadmin --password password --authenticationDatabase admin --db IMT_Auth --collection users --type json --file /mongo_import/IMT_Auth.users.json --jsonArray
+      "
+
 
 
   api-auth:

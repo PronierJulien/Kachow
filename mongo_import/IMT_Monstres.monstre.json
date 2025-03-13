@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$binary": {
+      "base64": "aEGkhZ2KD8oFcJlvISSHlg==",
+      "subType": "03"
+    }
+  },
+  "type": "EAU",
+  "hp": 2500,
+  "atk": 150,
+  "def": 200,
+  "vit": 70,
+  "xp": 10,
+  "xp_for_lvlup": 55,
+  "lvl": 1,
+  "available_lvl": 0,
+  "competences": [
+    {
+      "damage": 150,
+      "ratio": 5,
+      "cooldown": 0,
+      "lvl": 7,
+      "maxLevel": 7
+    },
+    {
+      "damage": 350,
+      "ratio": 7,
+      "cooldown": 2,
+      "lvl": 4,
+      "maxLevel": 4
+    },
+    {
+      "damage": 250,
+      "ratio": 12,
+      "cooldown": 5,
+      "lvl": 5,
+      "maxLevel": 5
+    }
+  ],
+  "idJoueur": "jean",
+  "_class": "kachow.api_monstres.model.Monstre"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "VEq2ArHUVpGilgGcgClTmA==",
+      "subType": "03"
+    }
+  },
+  "type": "EAU",
+  "hp": 2500,
+  "atk": 150,
+  "def": 200,
+  "vit": 70,
+  "xp": 0,
+  "xp_for_lvlup": 50,
+  "lvl": 0,
+  "available_lvl": 0,
+  "competences": [
+    {
+      "damage": 150,
+      "ratio": 5,
+      "cooldown": 0,
+      "lvl": 7,
+      "maxLevel": 7
+    },
+    {
+      "damage": 350,
+      "ratio": 7,
+      "cooldown": 2,
+      "lvl": 4,
+      "maxLevel": 4
+    },
+    {
+      "damage": 250,
+      "ratio": 12,
+      "cooldown": 5,
+      "lvl": 5,
+      "maxLevel": 5
+    }
+  ],
+  "idJoueur": "jean",
+  "_class": "kachow.api_monstres.model.Monstre"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "+0DPSYPzWKLhCYmf7TmXlw==",
+      "subType": "03"
+    }
+  },
+  "type": "VENT",
+  "hp": 1500,
+  "atk": 200,
+  "def": 450,
+  "vit": 80,
+  "xp": 0,
+  "xp_for_lvlup": 50,
+  "lvl": 0,
+  "available_lvl": 0,
+  "competences": [
+    {
+      "damage": 200,
+      "ratio": 10,
+      "cooldown": 0,
+      "lvl": 4,
+      "maxLevel": 4
+    },
+    {
+      "damage": 315,
+      "ratio": 17,
+      "cooldown": 2,
+      "lvl": 5,
+      "maxLevel": 5
+    },
+    {
+      "damage": 525,
+      "ratio": 20,
+      "cooldown": 6,
+      "lvl": 7,
+      "maxLevel": 7
+    }
+  ],
+  "idJoueur": "Patrick",
+  "_class": "kachow.api_monstres.model.Monstre"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "1UrhMQG8AP/HG6l/KftNkw==",
+      "subType": "03"
+    }
+  },
+  "type": "VENT",
+  "hp": 1500,
+  "atk": 200,
+  "def": 450,
+  "vit": 80,
+  "xp": 0,
+  "xp_for_lvlup": 50,
+  "lvl": 0,
+  "available_lvl": 0,
+  "competences": [
+    {
+      "damage": 200,
+      "ratio": 10,
+      "cooldown": 0,
+      "lvl": 4,
+      "maxLevel": 4
+    },
+    {
+      "damage": 315,
+      "ratio": 17,
+      "cooldown": 2,
+      "lvl": 5,
+      "maxLevel": 5
+    },
+    {
+      "damage": 525,
+      "ratio": 20,
+      "cooldown": 6,
+      "lvl": 7,
+      "maxLevel": 7
+    }
+  ],
+  "idJoueur": "Patrick",
+  "_class": "kachow.api_monstres.model.Monstre"
+},
+{
+  "_id": {
+    "$binary": {
+      "base64": "x0Bf88IAZODtx+LRbCU+tA==",
+      "subType": "03"
+    }
+  },
+  "type": "EAU",
+  "hp": 2500,
+  "atk": 150,
+  "def": 200,
+  "vit": 70,
+  "xp": 0,
+  "xp_for_lvlup": 50,
+  "lvl": 0,
+  "available_lvl": 0,
+  "competences": [
+    {
+      "damage": 150,
+      "ratio": 5,
+      "cooldown": 0,
+      "lvl": 7,
+      "maxLevel": 7
+    },
+    {
+      "damage": 350,
+      "ratio": 7,
+      "cooldown": 2,
+      "lvl": 4,
+      "maxLevel": 4
+    },
+    {
+      "damage": 250,
+      "ratio": 12,
+      "cooldown": 5,
+      "lvl": 5,
+      "maxLevel": 5
+    }
+  ],
+  "idJoueur": "Patrick",
+  "_class": "kachow.api_monstres.model.Monstre"
+}]
