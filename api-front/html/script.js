@@ -26,7 +26,12 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.text();
 
         localStorage.setItem('token', data);
-        window.location.href = 'dashboard.html';
+        if (!data.startsWith(username)) {
+            throw new Error('Erreur lors de la connexion');
+        }
+        else {
+            window.location.href = 'dashboard.html';
+        }
     } catch (error) {
         alert('Erreur : ' + error.message);
     }
