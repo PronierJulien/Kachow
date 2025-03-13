@@ -49,19 +49,26 @@ document.getElementById('signinForm').addEventListener('submit', async (e) => {
         const data = await response.text()
 
         localStorage.setItem('token', data);
+
+
+        try {
+            const response = await fetch('http://localhost:8010/api/joueur/create', {
+                method: 'POST',
+                headers: { 'Authorization': `${data}` }
+            });
+            if (response.ok) {
+                console.log("Joueur créé");
+            } else {
+                alert("Erreur lors de la création du joueur");
+            }
+        } catch (error) {
+            alert('Erreur : ' + error.message);
+        }
+        
         window.location.href = 'dashboard.html';
     } catch (error) {
         alert('Erreur : ' + error.message);
     }
     
-    const response = await fetch('http://api-joueur:8010/api/joueur/create', {
-        method: 'POST',
-        headers: { 'Authorization': `${token}` }
-    });
-    if (response.ok) {
-        alert("Joueur créé avec succès !");
-        getPlayerInfo();
-    } else {
-        alert("Erreur lors de la création du joueur");
-    }
+
 });

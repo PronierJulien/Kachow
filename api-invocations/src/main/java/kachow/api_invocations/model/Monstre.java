@@ -84,4 +84,10 @@ public class Monstre {
         return type;
     }
 
+    public String toString() {
+        return "Monstre [id=" + id + ", type=" + type + ", hp=" + hp + ", atk=" + atk + ", def=" + def + ", vit=" + vit
+                + ", xp=" + xp + ", xp_for_lvlup=" + xp_for_lvlup + ", lvl=" + lvl + ", available_lvl=" + available_lvl
+                + ", competences=" + competences + ", idJoueur=" + idJoueur + "]";
+    }
+
 }

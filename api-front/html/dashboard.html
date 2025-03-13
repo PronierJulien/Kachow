@@ -42,8 +42,8 @@
                 headers: { 'Authorization': `${token}` }
             });
             if (response.ok) {
-                const data = await response.json();
-                document.getElementById('playerData').textContent = JSON.stringify(data, null, 2);
+                const data = await response.text();
+                document.getElementById('playerData').textContent = data;
             } else {
                 alert("Erreur lors de la récupération des informations joueur");
             }
@@ -56,7 +56,7 @@
                 headers: { 'Authorization': `${token}` }
             });
             if (response.ok) {
-                const monster = await response.json();
+                const monster = await response.text();
                 document.getElementById('invocationResult').textContent = `Monstre invoqué : ${JSON.stringify(monster)}`;
             } else {
                 alert("Erreur lors de l'invocation du monstre");
@@ -66,6 +66,9 @@
         function showPage(pageId) {
             document.querySelectorAll('#dashboard > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(pageId).classList.remove('hidden');
+            if (pageId === 'playerInfo') {
+                getPlayerInfo();
+            }
         }
     </script>
 </body>
